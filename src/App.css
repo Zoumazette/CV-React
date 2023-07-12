@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500');
+
+*, ::before, ::after {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  /* outline: none; */ /* => supprime l'effet de contour */
+}
+
+:root {
+  /* colors */
+  --body-bg-color : #657b8b;
+  --sidebar-bg-color : #ffeedd;
+  --text-color: #5454544;
+  --title-color: #111;
+  --date-color: #ffe7d4;
+  --dark-body-bg-color : #242424;
+  --dark-sidebar-bg-color : #171717;
+  --dark-text-color: #d8d8d8;
+  --dark-title-color: #ffffff;
+  --dark-date-color: #e6ef71;
+
+  --icon-color: var(--text-color);
+  --circle-color: #aaa;
+  --circle-color-plain: #657b8b;
+  --dark-icon-color: var(--dark-text-color);
+  --dark-circle-color: rgb(108, 108, 108);
+  --dark-circle-color-plain: rgb(238, 238,238);
+
+  /* fonts */
+  --body-font: "Poppins", "Sans-serif";
+  --h1-font-size : 1.7rem;
+  --h2-font-size : 1.3rem;
+  --h3-font-size : 1.1rem;
+  --h4-font-size : 1rem;
+
+  /* helpers */
+  --spacing-1: .4rem;
+  --spacing-2: .8rem;
+  --spacing-3: 1.2rem;
+  --spacing-4: 1.5rem;
+  --spacing-5: 2rem;
+}
+
+body {
+  font-family: var(--body-font);
+  font-weight: 200;
+  color: var(--text-color);
+  background-color: var(--body-bg-color);
+}
+.dark {
+  color: var(--dark-text-color);
+  background-color: var(--dark-body-bg-color);
+}
+
+h1, h2, h3 {
+  margin-bottom: var(--spacing-1);
+  font-weight: 400;
+  color: var(--title-color);
+}
+
+.dark h1, .dark h2, .dark h3 {
+  color: var(--dark-title-color);
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+  text-transform: uppercase;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+  font-size: var(--h2-font-size);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dark button {
+  color:var(--dark-text-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+.dark a {
+  color: var(--dark-text-color);
+}
+
+p {
+  margin-bottom: var(--spacing-2);
+}
+
+ul {
+  padding-left: 1.3rem;
+}
+
+li {
+  margin-bottom: var(--spacing-2);
+}
+
+/* Helpers */
+.mb3 {
+  margin-bottom: var(--spacing-3);
+}
+.mb5 {
+  margin-bottom: var(--spacing-5);
+}
+
+/* Grids */
+
+.grid__row {
+  margin: var(--spacing-3);
+}
+
+@media screen and (min-width:768px) {
+  .grid__container {
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+  }
+  .grid__row {
+    display: grid;
+    /* grid-template-columns: 1fr 2fr; */
+    /* ci-dessous personnalisation pour affichage 3 colonnes (intégration logo OPQUAST) */
+    grid-template-columns: 2fr 4fr 1fr;
+    margin: 0;
+  }
+}
+
+/* layouts */
+.sidebar {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem;
+  background-color: var(--sidebar-bg-color);
+}
+
+/* Ci-dessous personnalisation de la sidebar (bande derrière la photo) */
+.sidebar::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 120px;
+  background-color: #BFC7CD;
+  clip-path: polygon(0 0, 100% 0%, 100% 69%, 0 100%);
+  /* clip-path: polygon(0 0, 100% 1%, 100% 100%, 75% 86%, 25% 86%, 0 100%); */ /* autre exemple de polygone avec des angles */
+  /* border-radius: 0 0 50% 50%; */ /* exemple de bordure arrondie */
+}
+.dark .sidebar {
+  background-color: var(--dark-sidebar-bg-color);
+}
+.dark .sidebar::before {
+  background-color: var(--dark-circle-color);
+}
+.actions {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  padding: 1.5rem;
+}
+
+/* Generate PDF */
+#cv-print {
+  width: 100% !important;
+}
+.cv-print .actions {
+  display: none;
+}
+.cv-print ul {
+  margin:0;
+  padding:0;
+}
+.cv-print ul li {
+  list-style-type:none;
+}
+.cv-print ul li::before {
+  content: "•";
+  display: inline-block; 
+  font-size: 110%;
+  padding-right: 10px;
+}
+.cv-print h3{
+  font-size: var(--h4-font-size);
+}
+.cv-print h2{
+  font-size: var(--h3-font-size);
+}
+.cv-print .grid__container {
+  /* font-size:12px !important; */
+  font-size: 10px !important;
+  max-width: 210mm;
+}
+.cv-print .grid__location {
+  color: var(--circle-color);
+}
+.cv-print .grid__date {
+  margin-top:5px;
+}
+/* Suppression du logo OPQUAST dans la rubrique FORMATIONS */
+.cv-print .grid__item .grid__img {
+  display: none !important;
+}
+.cv-print .sidebar {
+  height: 297mm;
+}
+.cv-print .user__infos svg {
+  display: none !important;
+}
+.cv-print .circle {
+  width:10px;
+  height:10px;
+}
+/* Redimensionnement de la photo et de la "bande arrière" */
+.cv-print .user__avatar {
+  /* display: none !important; */
+  height: 80px;
+  width: auto;
+}
+.cv-print .sidebar::before {
+  height: 230px;
+}
+/* Suppression des icones de la rubrique INTÉRETS */
+.cv-print .interests {
+  display: none !important;
+}
+/* Suppression de la rubrique AUTRES */
+.cv-print .other {
+  display: none !important;
+}

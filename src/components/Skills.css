@@ -1,0 +1,54 @@
+.skills {
+    margin: var(--spacing-3) 0;
+}
+
+.skill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* icons */
+.circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: var(--circle-color);
+}
+
+.circle-plain {
+    background-color: var(--circle-color-plain);
+}
+
+.dark .circle {
+    background-color: var(--dark-circle-color);
+}
+
+.dark .circle-plain {
+    background-color: var(--dark-circle-color-plain);
+}
+
+.interests {
+    /* display: none; */
+    align-items: center;
+}
+
+.interests svg {
+    margin: var(--spacing-1);
+}
+
+/* Ajout d'une section AUTRES */
+/* .other {
+    display: none;
+} */
+
+.other__info a {
+    align-items: center;
+    display: flex;
+}
+
+.other svg {
+    margin: var(--spacing-1);
+}
